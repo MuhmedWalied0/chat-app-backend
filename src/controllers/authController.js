@@ -25,18 +25,21 @@ const register=async(req,res)=>{
     
     const token = jwt.sign(
     {
-        id: user._id,
-        username: user.username,
+        id: newUser._id,
+        username: newUser.username,
     },
     process.env.JWT_SECRET,
     { expiresIn: process.env.JWT_EXPIRES_IN }
     );
 
     const data={
-        id:newUser._id,
-        firstName:newUser.firstName,
-        lastName:newUser.lastName,
-        username:newUser.username,
+        user:{
+            id:newUser._id,
+            firstName:newUser.firstName,
+            lastName:newUser.lastName,
+            username:newUser.username,
+        },
+        token
     }
 
     return res.status(200).json({
@@ -67,6 +70,15 @@ const login=async(req,res)=>{
             }
         });
     }
+
+    const token = jwt.sign(
+    {
+        id: user._id,
+        username: user.username,
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: process.env.JWT_EXPIRES_IN }
+    );
 
     const data = {
     id: user._id,
