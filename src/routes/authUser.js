@@ -11,6 +11,4 @@ router.post("/login",validate(loginSchema),login)
 router.post("/register",validate(registerSchema),register)
 
 
-
-
 export default router

@@ -81,10 +81,13 @@ const login=async(req,res)=>{
     );
 
     const data = {
-    id: user._id,
-    firstName: user.firstName,
-    lastName: user.lastName,
-    username: user.username,
+        user:{
+            id:user._id,
+            firstName:user.firstName,
+            lastName:user.lastName,
+            username:user.username,
+        },
+        token
     };
 
     return res.status(200).json({
